@@ -54,6 +54,7 @@ export default function Login(props) {
                     variant="outlined"
                     value={credentials.username}
                     onChange={handleChange}
+                    required
                 />
                 <TextField
                     type="password"
@@ -62,6 +63,7 @@ export default function Login(props) {
                     variant="outlined"
                     value={credentials.password}
                     onChange={handleChange}
+                    required
                 />
                 <Button type="submit" variant="contained" size="large" color="primary">Log in</Button>
             </form>

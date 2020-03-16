@@ -3,7 +3,7 @@ import { Route, Link, Switch, Redirect } from "react-router-dom";
 import { Container, Typography } from "@material-ui/core";
 import PrivateRoute from "./components/PrivateRoute";
 
-import Login from "./components/Login/Login";
+import Login from "./components/Login";
 import FriendsList from "./components/FriendsList";
 import "./App.css";
 
@@ -18,7 +18,7 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route component={Login} />
                 </Switch>
-                
+
             </Container>
         </div>
     );

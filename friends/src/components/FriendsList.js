@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { axiosWithAuth } from "../utils/axiosWithAuth";
+import FriendAdd from "./FriendAdd";
 import Friend from "./Friend";
 
 export default function FriendsList() {
@@ -14,7 +15,7 @@ export default function FriendsList() {
         axiosWithAuth()
             .get("/friends")
             .then(res => {
-                console.log(res.data);
+                console.log("Loaded Friends;", res.data);
                 setFriends(res.data);
             });
     }, []);
@@ -23,12 +24,20 @@ export default function FriendsList() {
         title: {
             marginBottom: "25px"
         },
+        list: {
+            marginTop: "40px"
+        },
     }))();
 
     return (
         <div className="friends-list">
-            <Typography variant="h2" component="h1" className={styles.title}>Friends List</Typography>
-            <div className="list">
+            <Typography variant="h2" component="h1" className={styles.title}>Friends</Typography>
+
+            <div className="friend-add">
+                <FriendAdd setFriends={setFriends} />
+            </div>
+
+            <div className={`list ${styles.list}`}>
                 {friends
                     .map((item, key) => {
                         return <Friend friend={item} key={key} />;
