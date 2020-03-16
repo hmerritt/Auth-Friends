@@ -15,10 +15,20 @@ export default function FriendsList() {
         axiosWithAuth()
             .get("/friends")
             .then(res => {
-                console.log("Loaded Friends;", res.data);
+                console.log("[FriendsList] Loaded Friends;", res.data);
                 setFriends(res.data);
             });
     }, []);
+
+    //  Delete friend
+    const friendDelete = (id) => {
+        axiosWithAuth()
+            .delete(`/friends/${id}`)
+            .then(res => {
+                console.log("[FriendsList] Deleted Friend;", res.data);
+                setFriends(res.data);
+            });
+    }
 
     const styles = makeStyles(theme => ({
         title: {
@@ -40,7 +50,7 @@ export default function FriendsList() {
             <div className={`list ${styles.list}`}>
                 {friends
                     .map((item, key) => {
-                        return <Friend friend={item} key={key} />;
+                        return <Friend friend={item} friendDelete={friendDelete} key={key} />;
                     })
                     .reverse()}
             </div>

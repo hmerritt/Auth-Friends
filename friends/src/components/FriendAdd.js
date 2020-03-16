@@ -21,7 +21,7 @@ export default function FriendAdd({ setFriends }) {
         axiosWithAuth()
             .post("/friends", friend)
             .then(res => {
-                console.log("Added Friend;", res.data);
+                console.log("[FriendAdd] Added Friend;", res.data);
                 setFriends(res.data);
             });
         setFriend({

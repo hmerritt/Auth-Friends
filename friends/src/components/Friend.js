@@ -1,13 +1,19 @@
 import React from "react";
-import { Card, CardContent, Typography } from "@material-ui/core";
-import { makeStyles } from '@material-ui/core/styles';
+import {
+    Button,
+    Card,
+    CardActions,
+    CardContent,
+    Typography
+} from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
+import { makeStyles } from "@material-ui/core/styles";
 
-export default function Friend({ friend }) {
-
+export default function Friend({ friend, friendDelete }) {
     const styles = makeStyles(theme => ({
         root: {
             marginBottom: "15px"
-        },
+        }
     }))();
 
     return (
@@ -23,6 +29,16 @@ export default function Friend({ friend }) {
                     {friend.email}
                 </Typography>
             </CardContent>
+            <CardActions>
+                <Button
+                    onClick={() => { friendDelete(friend.id) }}
+                    size="small"
+                    color="secondary"
+                    startIcon={<Delete />}
+                >
+                    Delete
+                </Button>
+            </CardActions>
         </Card>
     );
 }
