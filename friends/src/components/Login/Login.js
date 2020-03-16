@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { Typography } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
 import axios from "axios";
 
 export default function Login(props) {
@@ -20,7 +22,11 @@ export default function Login(props) {
             .post("http://localhost:5000/api/login", credentials)
             .then(res => {
                 console.log(`[Login] Logging in;`, res.data);
+
+                //  Add token to local-storage
                 localStorage.setItem("token", res.data.payload);
+
+                //  Change URL to /friends
                 props.history.push("/friends");
             })
             .catch(err => {
@@ -28,8 +34,15 @@ export default function Login(props) {
             })
     };
 
+    const styles = makeStyles(theme => ({
+        title: {
+            marginBottom: "25px"
+        },
+    }))();
+
     return (
         <div className="login">
+            <Typography variant="h2" component="h1" className={styles.title}>Login</Typography>
             <form onSubmit={login}>
                 <input type="text" name="username" placeholder="username" value={credentials.username} onChange={handleChange} />
                 <input type="password" name="password" placeholder="password" value={credentials.password} onChange={handleChange} />
